@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>col-lg-6 col-md-12 col-6 Demo</title>
+
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+
+        .main-box {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            background-color: #eaf4ff;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .demo-box {
+            border: 3px solid black;
+            padding: 35px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .box1 {
+            background-color: lightblue;
+        }
+
+        .box2 {
+            background-color: lightpink;
+        }
+
+        .screen-box {
+            background-color: #eeeeee;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container main-box">
+        <h1>Bootstrap Demo</h1>
+
+        <div class="info">
+            <p><strong>Class:</strong> col-lg-6 col-md-12 col-6</p>
+            <p>This changes based on screen size.</p>
+            <p><strong>Resize your browser window</strong> to see the boxes change.</p>
+        </div>
+
+        <div class="screen-box">
+            Current screen size: <span id="screenSize"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-6 demo-box box1">
+                Box 1<br>
+                col-lg-6 col-md-12 col-6
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-6 demo-box box2">
+                Box 2<br>
+                col-lg-6 col-md-12 col-6
+            </div>
+        </div>
+
+        <div class="note">
+            <p><strong>What happens?</strong></p>
+
+            <p>
+                On a <strong>small screen</strong>, each box is <strong>col-6</strong>,
+                so both boxes take half the row.
+            </p>
+
+            <p>
+                On a <strong>medium screen</strong>, each box becomes <strong>col-md-12</strong>,
+                so each box takes the full row and stacks.
+            </p>
+
+            <p>
+                On a <strong>large screen</strong>, each box becomes <strong>col-lg-6</strong>,
+                so both boxes go side by side again.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function updateScreenSize() {
+            let width = window.innerWidth;
+            let screenSize = document.getElementById("screenSize");
+
+            if (width < 768) {
+                screenSize.textContent = "Small / Phone screen — using col-6";
+            } else if (width >= 768 && width < 992) {
+                screenSize.textContent = "Medium screen — using col-md-12";
+            } else {
+                screenSize.textContent = "Large screen — using col-lg-6";
+            }
+        }
+
+        updateScreenSize();
+
+        window.addEventListener("resize", updateScreenSize);
+    </script>
+
+</body>
+</html>

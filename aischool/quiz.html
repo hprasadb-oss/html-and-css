@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-color: powderblue;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="ai.html">Home</a>
+    <a href="subjects.html">Subjects</a>
+    <a href="quiz.html">Quiz</a>
+</nav>
+
+<div class="container">
+
+    <h1>Quick Quiz</h1>
+
+    <p>What is 5 + 3?</p>
+
+    <button onclick="checkAnswer(8)">8</button>
+    <button onclick="checkAnswer(10)">10</button>
+
+</div>
+
+<script>
+function checkAnswer(answer) {
+    if (answer === 8) {
+        alert("Correct!");
+    } else {
+        alert("Try again!");
+    }
+}
+</script>
+
+</body>
+</html>

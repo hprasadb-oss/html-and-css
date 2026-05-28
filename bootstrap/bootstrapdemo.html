@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Column Dynamic Demo</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .main-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background-color: #eaf4ff;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .controls {
+            background-color: #eeeeee;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .demo-box {
+            border: 2px solid black;
+            padding: 35px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .box1 {
+            background-color: lightblue;
+        }
+
+        .box2 {
+            background-color: lightpink;
+        }
+
+        .box3 {
+            background-color: lightgreen;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .good {
+            color: green;
+        }
+
+        .bad {
+            color: red;
+        }
+
+        .grid-guide {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 4px;
+            margin-bottom: 25px;
+        }
+
+        .grid-cell {
+            background-color: #dddddd;
+            border: 1px solid gray;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container main-container">
+        <h1>Bootstrap Column Visual Demo</h1>
+
+        <div class="info-box">
+            <p><strong>Bootstrap rows have 12 spaces total.</strong></p>
+            <p>Example: <strong>col-6 + col-6 = 12</strong>, so each box takes half the row.</p>
+            <p>In Bootstrap 4, use <strong>col-6</strong>, not <strong>col-xs-6</strong>.</p>
+        </div>
+
+        <h3>12 Column Guide</h3>
+
+        <div class="grid-guide">
+            <div class="grid-cell">1</div>
+            <div class="grid-cell">2</div>
+            <div class="grid-cell">3</div>
+            <div class="grid-cell">4</div>
+            <div class="grid-cell">5</div>
+            <div class="grid-cell">6</div>
+            <div class="grid-cell">7</div>
+            <div class="grid-cell">8</div>
+            <div class="grid-cell">9</div>
+            <div class="grid-cell">10</div>
+            <div class="grid-cell">11</div>
+            <div class="grid-cell">12</div>
+        </div>
+
+        <div class="controls">
+            <h3>Change Column Sizes</h3>
+
+            <label for="slider1">Column 1 Size:</label>
+            <input type="range" id="slider1" min="1" max="12" value="4" class="form-control-range">
+            <p>Column 1: <span id="value1">4</span></p>
+
+            <label for="slider2">Column 2 Size:</label>
+            <input type="range" id="slider2" min="1" max="12" value="4" class="form-control-range">
+            <p>Column 2: <span id="value2">4</span></p>
+
+            <label for="slider3">Column 3 Size:</label>
+            <input type="range" id="slider3" min="1" max="12" value="4" class="form-control-range">
+            <p>Column 3: <span id="value3">4</span></p>
+        </div>
+
+        <h3>Result</h3>
+
+        <div class="row">
+            <div id="column1" class="col-4 demo-box box1">
+                col-4
+            </div>
+
+            <div id="column2" class="col-4 demo-box box2">
+                col-4
+            </div>
+
+            <div id="column3" class="col-4 demo-box box3">
+                col-4
+            </div>
+        </div>
+
+        <p id="message" class="message good">
+            Total: 12 / 12. Perfect fit!
+        </p>
+    </div>
+
+    <script>
+        let slider1 = document.getElementById("slider1");
+        let slider2 = document.getElementById("slider2");
+        let slider3 = document.getElementById("slider3");
+
+        let value1 = document.getElementById("value1");
+        let value2 = document.getElementById("value2");
+        let value3 = document.getElementById("value3");
+
+        let column1 = document.getElementById("column1");
+        let column2 = document.getElementById("column2");
+        let column3 = document.getElementById("column3");
+
+        let message = document.getElementById("message");
+
+        function updateColumns() {
+            let size1 = Number(slider1.value);
+            let size2 = Number(slider2.value);
+            let size3 = Number(slider3.value);
+
+            value1.textContent = size1;
+            value2.textContent = size2;
+            value3.textContent = size3;
+
+            // Reset classes
+            column1.className = "demo-box box1";
+            column2.className = "demo-box box2";
+            column3.className = "demo-box box3";
+
+            // Add new Bootstrap column classes
+            column1.classList.add("col-" + size1);
+            column2.classList.add("col-" + size2);
+            column3.classList.add("col-" + size3);
+
+            column1.textContent = "col-" + size1;
+            column2.textContent = "col-" + size2;
+            column3.textContent = "col-" + size3;
+
+            let total = size1 + size2 + size3;
+
+            if (total === 12) {
+                message.textContent = "Total: " + total + " / 12. Perfect fit!";
+                message.className = "message good";
+            } else if (total < 12) {
+                message.textContent = "Total: " + total + " / 12. There is empty space left.";
+                message.className = "message bad";
+            } else {
+                message.textContent = "Total: " + total + " / 12. Too big! Extra columns move to the next line.";
+                message.className = "message bad";
+            }
+        }
+
+        slider1.addEventListener("input", updateColumns);
+        slider2.addEventListener("input", updateColumns);
+        slider3.addEventListener("input", updateColumns);
+    </script>
+
+</body>
+</html>

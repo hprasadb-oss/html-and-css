@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Fixed: viewport is correct for responsive Bootstrap layout -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bootstrap Grid Practice</title>
+
+    <!-- Fixed: cleaned up Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Fixed: Bootstrap 4 JS needs jQuery and Popper.js before Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hello students!</h1>
+        <p>Resize the browser window to see the effect.</p>
+
+        <div class="row">
+            <!-- Fixed: Bootstrap 4 uses col- instead of col-xs- -->
+            <!-- Fixed: typo backround-color changed to background-color -->
+            <!-- Fixed: border:m changed to border: 1px solid black -->
+            <div class="col-md-8 col-4" style="background-color: red; border: 1px solid black;">
+                .col-md-8 .col-4
+            </div>
+
+            <!-- Fixed: removed duplicate col-md classes -->
+            <!-- Changed col-md-12 col-md-5 to col-md-4 so the row adds up to 12 -->
+            <div class="col-md-4 col-8" style="background-color: lavender; border: 1px solid black;">
+                .col-md-4 .col-8
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Fixed: col-1g-6 was wrong, changed to col-lg-6 -->
+            <!-- Fixed: text said col-xs, changed to Bootstrap 4 col- -->
+            <div class="col-lg-6 col-md-12 col-6" style="background-color: lavenderblush; border: 1px solid black;">
+                .col-lg-6 .col-md-12 .col-6
+            </div>
+
+            <!-- Fixed: col- xs-6 had a space, changed to col-6 -->
+            <div class="col-lg-6 col-md-12 col-6" style="background-color: lightgrey; border: 1px solid black;">
+                .col-lg-6 .col-md-12 .col-6
+            </div>
+        </div>
+
+        <div class="row" style="background-color: lightcyan;">
+            <!-- Fixed: Bootstrap 4 does not use col-xs-6, changed to col-6 -->
+            <div class="col-6" style="border: 1px solid black;">
+                .col-6
+            </div>
+
+            <!-- Fixed: Bootstrap 4 does not use col-xs-6, changed to col-6 -->
+            <div class="col-6" style="border: 1px solid black;">
+                .col-6
+            </div>
+        </div>
+    </div>
+</body>
+</html>
