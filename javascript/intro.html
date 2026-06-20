@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1 id="myH" ></h1>
+  <p id="myP"></p>
+  <h2 id="haanshika"></h2>
+  <p id="donut"></p>
+  <p id="img"></p>
+  <p id="newdonut"></p>
+  <script>
+    // my heading:
+    document.getElementById("myH").innerHTML ="javaScript Comments";
+    // my paragragh:
+     document.getElementById("myP").innerHTML ="My First Paragrapgh.";
+     // my heading:
+     document.getElementById("haanshika").innerHTML ="i got a donut today that my dad bought me";
+     // my paragragh:
+     document.getElementById("donut").innerHTML = "it was my first donut i got today then i will have more";
+     const myimg= document.createElement("img");
+     myimg.src="https://funcakes.com/content/uploads/2020/08/Donut-960x720-c-default.jpg";
+     myimg.width='400';
+     document.getElementById("img").appendChild(myimg);
+
+     const donut= document.createElement("img");
+     donut.src="https://www.biggerbolderbaking.com/wp-content/uploads/2020/11/Homemade-Dunkin-Donuts-WS-Thumb-scaled.jpg";
+     donut.width='400';
+     document.getElementById("newdonut").appendChild(donut);
+  </script>
+</body>
+</html>

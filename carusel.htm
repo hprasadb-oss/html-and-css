@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+
+    <style>
+        /* Slider container */
+        .slider {
+            width: 400px;
+            height: 250px;
+            overflow: hidden;
+            margin: 40px auto 15px;
+            border-radius: 10px;
+        }
+
+        /* Holds all images in one row */
+        .slides {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        /* Each image */
+        .slides img {
+            width: 400px;
+            height: 250px;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .buttons button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Slider -->
+    <div class="slider">
+        <div class="slides" id="slides">
+            <img
+                src="https://www.codingal.com/resources/wp-content/uploads/2024/07/logo-1.png"
+                alt="Codingal logo"
+            >
+
+            <img
+                src="https://media.licdn.com/dms/image/v2/D4D22AQGDy0bwCnbfYg/feedshare-shrink_800/feedshare-shrink_800/0/1720697339064?e=2147483647&v=beta&t=0AMAk1Bx1BV9mZdSvX6VDcAM2V5JjhTI2B3TzZAWrTc"
+                alt="Codingal promotional image"
+            >
+
+            <img
+                src="https://fastly.codingal.com/images/referral/invite-student.png"
+                alt="Invite a student"
+            >
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="buttons">
+        <button type="button" onclick="prevSlide()">Previous</button>
+        <button type="button" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let index = 0;
+
+        const slides = document.getElementById("slides");
+        const images = slides.querySelectorAll("img");
+        const totalSlides = images.length;
+
+        function updateSlider() {
+            slides.style.transform = `translateX(-${index * 400}px)`;
+        }
+
+        function nextSlide() {
+            index = (index + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+    </script>
+</body>
+</html>
