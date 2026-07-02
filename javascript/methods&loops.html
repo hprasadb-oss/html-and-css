@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Methods and Loops Project</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eaf6ff;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .box {
+      background-color: white;
+      border-radius: 15px;
+      padding: 25px;
+      width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px gray;
+    }
+
+    h1 {
+      color: #1d6fa5;
+    }
+
+    button {
+      background-color: #1d6fa5;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #15557d;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>Methods and Loops</h1>
+
+    <p id="date"></p>
+    <p id="numbers"></p>
+    <p id="rounded"></p>
+
+    <button onclick="showOutput()">Generate Again</button>
+  </div>
+
+  <script>
+    function showOutput() {
+      // Current date using Date method
+      let today = new Date();
+      document.getElementById("date").innerHTML =
+        "Current Date: " + today.toDateString();
+
+      // Random set of numbers using loop and Math.random()
+      let randomNumbers = "";
+
+      for (let i = 1; i <= 10; i++) {
+        let number = Math.floor(Math.random() * 100) + 1;
+        randomNumbers += number + " ";
+      }
+
+      document.getElementById("numbers").innerHTML =
+        "Random Numbers: " + randomNumbers;
+
+      // Rounded random number using Math.round()
+      let randomDecimal = Math.random() * 100;
+      let roundedNumber = Math.round(randomDecimal);
+
+      document.getElementById("rounded").innerHTML =
+        "Rounded Random Number: " + roundedNumber;
+    }
+
+    showOutput();
+  </script>
+
+</body>
+</html>
