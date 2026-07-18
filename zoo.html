@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family:Arial, sans-serif:
+            backround: aliblue;
+            text-allign: center;
+            padding:30px;
+        }
+        h1 {
+            color: #ff5a43
+        }
+        #zoo {
+        border:2px solid #ff5a43;
+        width: 300px;
+        margin:16px auto;
+        padding:12px;
+        border-radius: 10px;
+        background:white;
+        }
+        
+    </style>
+</head>
+<body>
+ <h1>My Zoo</h1>   
+ <p>Use Javascript and the DOM to add animals to each cage</p>
+ <div id="Zoo">
+    <div class="Zone"> 1: <span id="zone1"></span></div>
+    <div class="Zone"> 2:<span id="zone2"></span></div>
+    <div class="Zone">3: <span id="zone3"></span></div>
+    <div class="Zone">Total Animals: <span id="Total"></span></div>
+ </div>
+ <br>
+ <button onclick="openZoo()">Open the zoo!</button>
+ <p id="zoo-status"></p>
+ <script>
+    function openZoo () {
+        /* Task 1: add your first animalto zone 1 */
+        document.getElementById("zone1").innerHTML ="Lion";
+        /* Task 2:dd your second animal to zone 2 */
+         document.getElementById("zone2").innerHTML ="elephant";
+         /* Task 3: add your thrid animal to zone 3 */
+          document.getElementById("zone3").innerHTML ="penguin";
+          /* Task 4: show e total number of animals */
+           document.getElementById("Total").innerHTML ="3";
+           /* Task 5: change the zooackround color */
+            document.getElementById("Zoo").style.backroundColor ="lightgreen";
+            /* Task 6: Use the document object to show the age title */
+             document.getElementById("zoo-status").innerHTML = document.title + "is now open!";
+    }
+ </script>
+</body>
+</html>
