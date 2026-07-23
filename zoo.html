@@ -6,13 +6,13 @@
     <title>Document</title>
     <style>
         body{
-            font-family:Arial, sans-serif:
-            backround: aliblue;
-            text-allign: center;
+            font-family:Arial, sans-serif;
+            background: aliceblue;
+            text-align: center;
             padding:30px;
         }
         h1 {
-            color: #ff5a43
+            color: #ff5a43;
         }
         #zoo {
         border:2px solid #ff5a43;
@@ -21,6 +21,21 @@
         padding:12px;
         border-radius: 10px;
         background:white;
+        }
+        .zone {
+            border: 1px solid #ff5a43;
+            margin: 6px 0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: left;
+        }
+        button {
+            background: #ff5a43;
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
         }
         
     </style>
@@ -48,7 +63,7 @@
           /* Task 4: show e total number of animals */
            document.getElementById("Total").innerHTML ="3";
            /* Task 5: change the zooackround color */
-            document.getElementById("Zoo").style.backroundColor ="lightgreen";
+            document.getElementById("Zoo").style.backgroundColor ="lightgreen";
             /* Task 6: Use the document object to show the age title */
              document.getElementById("zoo-status").innerHTML = document.title + "is now open!";
     }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>current month</h1>
+    <p id="month"></p>
+    <p id="day"></p>
+  <script>
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    let month = new Date().getMonth();
+    currentMonthName=monthNames[month];
+    document.getElementById("month").innerHTML="the current month is "+currentMonthName;
+    
+    
+    const today = new Date();
+    const dayOfMonth = today.getDate();
+    console.log(dayOfMonth);
+    document.getElementById("day").innerHTML="the current date is "+ dayOfMonth;
+  </script>  
+</body>
+</html>
