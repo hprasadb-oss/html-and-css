@@ -1,28 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Month, Day and Time</title>
 </head>
+
 <body>
-    <h1>current month</h1>
-    <p id="month"></p>
-    <p id="day"></p>
+  <h1>Current Date and Time</h1>
+
+  <p id="month"></p>
+  <p id="day"></p>
+  <p id="time"></p>
+
   <script>
     const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
     ];
-    let month = new Date().getMonth();
-    currentMonthName=monthNames[month];
-    document.getElementById("month").innerHTML="the current month is "+currentMonthName;
-    
-    
-    const today = new Date();
-    const dayOfMonth = today.getDate();
-    console.log(dayOfMonth);
-    document.getElementById("day").innerHTML="the current date is "+ dayOfMonth;
-  </script>  
+
+    function showDateAndTime() {
+      const now = new Date();
+
+      const currentMonth = monthNames[now.getMonth()];
+      const currentDay = now.getDate();
+      const currentTime = now.toLocaleTimeString();
+
+      document.getElementById("month").innerHTML =
+        "The current month is " + currentMonth;
+
+      document.getElementById("day").innerHTML =
+        "The current day is " + currentDay;
+
+      document.getElementById("time").innerHTML =
+        "The current time is " + currentTime;
+    }
+
+    showDateAndTime();
+
+    setInterval(showDateAndTime, 1000);
+  </script>
 </body>
 </html>
