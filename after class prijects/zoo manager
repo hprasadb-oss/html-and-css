@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Digital Zoo Manager</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #1b5e20;
+        }
+
+        .intro {
+            color: #555555;
+            font-size: 17px;
+        }
+
+        #zoo {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .zone {
+            background-color: white;
+            border: 3px solid #2e7d32;
+            border-radius: 15px;
+            width: 220px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .zone h2 {
+            color: #1b5e20;
+        }
+
+        .animal {
+            font-size: 45px;
+        }
+
+        button {
+            margin-top: 30px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+        }
+
+        #output {
+            background-color: white;
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 2px solid #2e7d32;
+            border-radius: 12px;
+            text-align: left;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🐾 My Digital Zoo Manager 🐾</h1>
+
+    <p class="intro">
+        Click the button to explore and manage the zoo using the HTML DOM.
+    </p>
+
+    <!-- Main Parent Container -->
+    <div id="zoo">
+
+        <!-- Lion Zone -->
+        <div class="zone" id="lionZone">
+            <h2>Lion Zone</h2>
+            <p class="animal">🦁</p>
+            <p>
+                Animal:
+                <span>Lion</span>
+            </p>
+        </div>
+
+        <!-- Elephant Zone -->
+        <div class="zone" id="elephantZone">
+            <h2>Elephant Zone</h2>
+            <p class="animal">🐘</p>
+            <p>
+                Animal:
+                <span>Elephant</span>
+            </p>
+        </div>
+
+        <!-- Panda Zone -->
+        <div class="zone" id="pandaZone">
+            <h2>Panda Zone</h2>
+            <p class="animal">🐼</p>
+            <p>
+                Animal:
+                <span>Panda</span>
+            </p>
+        </div>
+
+    </div>
+
+    <button onclick="manageZoo()">Manage Zoo</button>
+
+    <div id="output">
+        DOM information will appear here.
+    </div>
+
+    <script>
+
+        function manageZoo() {
+
+            // Step 4: Select DOM elements using getElementById()
+            let zoo = document.getElementById("zoo");
+
+            let lionZone =
+                document.getElementById("lionZone");
+
+            let elephantZone =
+                document.getElementById("elephantZone");
+
+            let pandaZone =
+                document.getElementById("pandaZone");
+
+            let output =
+                document.getElementById("output");
+
+
+            // Step 5: Parent Node
+            let lionParent = lionZone.parentNode;
+
+
+            // Children
+            let zooChildren = zoo.children;
+
+
+            // Sibling Nodes
+            let nextZone =
+                lionZone.nextElementSibling;
+
+            let previousZone =
+                pandaZone.previousElementSibling;
+
+
+            // Step 6: Check Node Types
+            // Element node = 1
+            // Text node = 3
+
+            let elementNodeType =
+                lionZone.nodeType;
+
+            let textNode =
+                lionZone.querySelector("h2").firstChild;
+
+            let textNodeType =
+                textNode.nodeType;
+
+
+            // Step 7: querySelector()
+            let lionHeading =
+                lionZone.querySelector("h2");
+
+            let elephantHeading =
+                elephantZone.querySelector("h2");
+
+            let pandaHeading =
+                pandaZone.querySelector("h2");
+
+
+            // Change HTML using innerHTML
+            lionHeading.innerHTML =
+                "🦁 King Lion Zone";
+
+            elephantHeading.innerHTML =
+                "🐘 Giant Elephant Zone";
+
+            pandaHeading.innerHTML =
+                "🐼 Happy Panda Zone";
+
+
+            // Change styles using the style property
+            lionZone.style.backgroundColor =
+                "#fff3cd";
+
+            elephantZone.style.backgroundColor =
+                "#d6eaff";
+
+            pandaZone.style.backgroundColor =
+                "#f3e5f5";
+
+
+            // Display DOM information
+            output.innerHTML =
+                "<h2>DOM Tree Information</h2>" +
+
+                "<b>Main Zoo Node:</b> " +
+                zoo.nodeName +
+                "<br>" +
+
+                "<b>Number of Zoo Children:</b> " +
+                zooChildren.length +
+                "<br><br>" +
+
+                "<b>Lion Zone Parent ID:</b> " +
+                lionParent.id +
+                "<br>" +
+
+                "<b>Lion Zone Node Type:</b> " +
+                elementNodeType +
+                " (Element Node)" +
+                "<br>" +
+
+                "<b>Lion Heading Text Node Type:</b> " +
+                textNodeType +
+                " (Text Node)" +
+                "<br><br>" +
+
+                "<b>Lion's Next Sibling:</b> " +
+                nextZone.id +
+                "<br>" +
+
+                "<b>Panda's Previous Sibling:</b> " +
+                previousZone.id +
+                "<br><br>" +
+
+                "<b>First Child Zone:</b> " +
+                zooChildren[0].id +
+                "<br>" +
+
+                "<b>Second Child Zone:</b> " +
+                zooChildren[1].id +
+                "<br>" +
+
+                "<b>Third Child Zone:</b> " +
+                zooChildren[2].id +
+                "<br><br>" +
+
+                "✅ Zoo DOM successfully explored and updated!";
+        }
+
+    </script>
+
+</body>
+</html>
