@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Ocean World</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background-color: #e6f7ff;
+    }
+
+    .hero {
+      background-color: #0077b6;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .animal-card {
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      background-color: #023e8a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+
+    <a class="navbar-brand" href="#">Ocean World</a>
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" href="#home">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#animals">Sea Animals</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#explore">Explore</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+  <!-- Hero Section -->
+  <div id="home" class="hero">
+
+    <h1>Welcome to My Ocean World</h1>
+
+    <p>
+      Dive into the amazing world beneath the waves!
+    </p>
+
+  </div>
+
+
+  <!-- Spinner Section -->
+  <div class="container text-center mt-5">
+
+    <h2>Exploring the Ocean...</h2>
+
+    <div class="spinner-border text-primary"></div>
+
+    <div class="spinner-border text-success"></div>
+
+    <div class="spinner-border text-info"></div>
+
+    <p class="mt-3">
+      Loading exciting ocean discoveries!
+    </p>
+
+  </div>
+
+
+  <!-- Sea Animal Cards -->
+  <div id="animals" class="container mt-5">
+
+    <h2 class="text-center mb-4">Amazing Sea Animals</h2>
+
+    <div class="row">
+
+
+      <!-- Dolphin Card -->
+      <div class="col-md-4">
+
+        <div class="card animal-card">
+
+          <div class="card-body">
+
+            <h4 class="card-title">Dolphin</h4>
+
+            <p class="card-text">
+              Dolphins are intelligent and playful sea mammals.
+              They communicate using clicks and whistles.
+            </p>
+
+            <a href="#" class="btn btn-primary">
+              Learn More
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Turtle Card -->
+      <div class="col-md-4">
+
+        <div class="card animal-card">
+
+          <div class="card-body">
+
+            <h4 class="card-title">Sea Turtle</h4>
+
+            <p class="card-text">
+              Sea turtles can travel thousands of kilometres
+              across the ocean during their lives.
+            </p>
+
+            <a href="#" class="btn btn-success">
+              Learn More
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Shark Card -->
+      <div class="col-md-4">
+
+        <div class="card animal-card">
+
+          <div class="card-body">
+
+            <h4 class="card-title">Shark</h4>
+
+            <p class="card-text">
+              Sharks are powerful ocean predators and have
+              lived in Earth's oceans for millions of years.
+            </p>
+
+            <a href="#" class="btn btn-info">
+              Learn More
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Explore Section -->
+  <div id="explore" class="container text-center mt-5">
+
+    <h2>Explore More Ocean Life</h2>
+
+    <p>
+      Use the page buttons below to discover more ocean creatures.
+    </p>
+
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center">
+
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Previous</a>
+      </li>
+
+      <li class="page-item active">
+        <a class="page-link" href="#">1</a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link" href="#">2</a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link" href="#">3</a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+
+  <!-- Footer -->
+  <div class="footer">
+
+    <p>My Ocean World</p>
+
+  </div>
+
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

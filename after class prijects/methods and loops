@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Methods and Loops</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff3e0;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .box {
+            background-color: white;
+            width: 600px;
+            max-width: 90%;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #ef6c00;
+        }
+
+        button {
+            background-color: #ff7043;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e64a19;
+        }
+
+        #output {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #fff8e1;
+            border-radius: 10px;
+            text-align: left;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>Methods and Loops</h1>
+
+        <p>
+            Click the button to print random numbers,
+            today's date, and a rounded random number.
+        </p>
+
+        <button onclick="showResults()">Show Results</button>
+
+        <div id="output">
+            Results will appear here.
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function showResults() {
+
+            let result = "";
+
+            // Print random numbers using a loop
+            result += "<b>Random Numbers:</b><br>";
+
+            for (let i = 1; i <= 5; i++) {
+
+                let randomNumber = Math.random() * 100;
+
+                result +=
+                    "Random Number " +
+                    i +
+                    ": " +
+                    randomNumber +
+                    "<br>";
+            }
+
+
+            // Generate a random number
+            let number = Math.random() * 100;
+
+            // Round the random number
+            let roundedNumber = Math.round(number);
+
+
+            // Get the current date
+            let today = new Date();
+
+
+            result += "<br>";
+
+            result +=
+                "<b>Random Number:</b> " +
+                number +
+                "<br>";
+
+            result +=
+                "<b>Rounded Random Number:</b> " +
+                roundedNumber +
+                "<br><br>";
+
+            result +=
+                "<b>Current Date:</b> " +
+                today.toDateString() +
+                "<br>";
+
+            result +=
+                "<b>Current Date and Time:</b> " +
+                today +
+                "<br>";
+
+
+            // Display everything on the webpage
+            document.getElementById("output").innerHTML =
+                result;
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array and Call Stack Activity</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef7ff;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: white;
+            width: 600px;
+            max-width: 90%;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #1565c0;
+        }
+
+        p {
+            color: #444;
+        }
+
+        button {
+            background-color: #1565c0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0d47a1;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e3f2fd;
+            border-radius: 10px;
+            text-align: left;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Array and Call Stack</h1>
+
+        <p>
+            This activity demonstrates how JavaScript arrays store
+            multiple values and how functions work using the call stack.
+        </p>
+
+        <button onclick="startActivity()">Start Activity</button>
+
+        <div id="result">
+            Click the button to see the result.
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Creating an array
+        let fruits = [
+            "Apple",
+            "Banana",
+            "Mango",
+            "Orange",
+            "Grapes"
+        ];
+
+
+        function showArray() {
+
+            let text = "<b>My Fruit Array:</b><br>";
+
+            for (let i = 0; i < fruits.length; i++) {
+                text +=
+                    (i + 1) +
+                    ". " +
+                    fruits[i] +
+                    "<br>";
+            }
+
+            return text;
+        }
+
+
+        // First function in the call stack
+        function firstFunction() {
+
+            return secondFunction();
+        }
+
+
+        // Second function enters the call stack
+        function secondFunction() {
+
+            return thirdFunction();
+        }
+
+
+        // Third function enters the call stack
+        function thirdFunction() {
+
+            return "firstFunction → secondFunction → thirdFunction";
+        }
+
+
+        function startActivity() {
+
+            // Select HTML element using getElementById()
+            let result =
+                document.getElementById("result");
+
+            let arrayOutput =
+                showArray();
+
+            let callStackOutput =
+                firstFunction();
+
+            result.innerHTML =
+                arrayOutput +
+                "<br>" +
+                "<b>Number of items:</b> " +
+                fruits.length +
+                "<br><br>" +
+
+                "<b>First Array Item:</b> " +
+                fruits[0] +
+                "<br>" +
+
+                "<b>Last Array Item:</b> " +
+                fruits[fruits.length - 1] +
+                "<br><br>" +
+
+                "<b>Call Stack:</b><br>" +
+                callStackOutput +
+                "<br><br>" +
+
+                "✅ Array and call stack activity completed!";
+        }
+
+    </script>
+
+</body>
+</html>

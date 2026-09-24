@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Study Progress Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+            padding: 30px;
+        }
+
+        .jumbotron {
+            background-color: #d9edf7;
+            padding: 30px;
+        }
+
+        .jumbotron h1 {
+            color: #31708f;
+        }
+
+        .section-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            height: 25px;
+        }
+
+        .progress-bar {
+            line-height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1>My Study Progress Dashboard</h1>
+        <p>Track my completed lessons and progress in each subject.</p>
+    </div>
+
+    <!-- Subject Buttons -->
+    <h2 class="section-title">My Subjects</h2>
+
+    <button class="btn btn-primary">Math</button>
+    <button class="btn btn-success">Science</button>
+    <button class="btn btn-warning">English</button>
+    <button class="btn btn-danger">Coding</button>
+
+    <!-- Completed Lessons -->
+    <h2 class="section-title">
+        Lessons Completed
+        <span class="badge">24</span>
+    </h2>
+
+    <p>
+        Math
+        <span class="badge">8</span>
+    </p>
+
+    <p>
+        Science
+        <span class="badge">6</span>
+    </p>
+
+    <p>
+        English
+        <span class="badge">5</span>
+    </p>
+
+    <p>
+        Coding
+        <span class="badge">5</span>
+    </p>
+
+    <!-- Subject Progress -->
+    <h2 class="section-title">Subject Progress</h2>
+
+    <p>Math</p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-primary"
+             style="width: 80%;">
+            80%
+        </div>
+    </div>
+
+    <p>Science</p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-success"
+             style="width: 70%;">
+            70%
+        </div>
+    </div>
+
+    <p>English</p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-warning"
+             style="width: 60%;">
+            60%
+        </div>
+    </div>
+
+    <p>Coding</p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-danger"
+             style="width: 50%;">
+            50%
+        </div>
+    </div>
+
+</body>
+</html>

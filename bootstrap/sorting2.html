@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sorting Visualizer</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f7f4ff;
+        color: #222;
+    }
+
+    /* ==============================
+       HEADER
+    ============================== */
+
+    header {
+        background: white;
+        padding: 25px 40px;
+        border-bottom: 2px solid #ddd2ff;
+    }
+
+    h1 {
+        margin: 0;
+        color: #6b16b5;
+        font-size: 38px;
+    }
+
+    header p {
+        margin-top: 8px;
+        font-size: 18px;
+    }
+
+
+    /* ==============================
+       MAIN LAYOUT
+    ============================== */
+
+    .container {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+
+    /* ==============================
+       LEFT MENU
+    ============================== */
+
+    .sidebar {
+        background: white;
+        border-radius: 15px;
+        padding: 18px;
+        border: 2px solid #ded2ff;
+        height: fit-content;
+    }
+
+    .sidebar h2 {
+        margin-top: 0;
+        color: #6b16b5;
+        font-size: 20px;
+    }
+
+    .example-button {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 12px;
+
+        border: 2px solid #d5c3f7;
+        border-radius: 10px;
+
+        background: white;
+
+        text-align: left;
+        cursor: pointer;
+
+        font-size: 15px;
+    }
+
+    .example-button:hover {
+        background: #f2eaff;
+    }
+
+    .example-button.active {
+        background: #7121b8;
+        color: white;
+        border-color: #7121b8;
+    }
+
+
+    /* ==============================
+       LEGEND
+    ============================== */
+
+    .legend {
+        margin-top: 25px;
+        background: #f2fff0;
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid #aed8a7;
+    }
+
+    .legend h3 {
+        margin-top: 0;
+        color: #197526;
+    }
+
+    .legend-row {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .legend-box {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+        border-radius: 4px;
+    }
+
+    .blue {
+        background: #3c8edb;
+    }
+
+    .yellow {
+        background: #ffc928;
+    }
+
+    .red {
+        background: #ec3d32;
+    }
+
+    .green {
+        background: #62b442;
+    }
+
+
+    /* ==============================
+       MAIN PANEL
+    ============================== */
+
+    .main {
+        min-width: 0;
+    }
+
+    .panel {
+        background: white;
+        border: 2px solid #d8c8ff;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .panel-title {
+        padding: 18px 22px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .panel-title h2 {
+        margin: 0 0 7px 0;
+        color: #6115a5;
+    }
+
+
+    /* ==============================
+       CONTROLS
+    ============================== */
+
+    .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+
+        padding: 15px 22px;
+
+        background: #fbf9ff;
+        border-bottom: 1px solid #ddd;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .start-btn {
+        background: #6e20b8;
+        color: white;
+    }
+
+    .reset-btn {
+        background: #eee;
+        color: #333;
+    }
+
+    .direction-btn {
+        background: #e7dbff;
+        color: #56149a;
+    }
+
+    .direction-btn.selected {
+        background: #6e20b8;
+        color: white;
+    }
+
+    .speed-control {
+        margin-left: auto;
+    }
+
+
+    /* ==============================
+       BAR AREA
+    ============================== */
+
+    .bar-area {
+        min-height: 330px;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        gap: 18px;
+
+        padding: 35px;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #ffffff,
+                #f8f4ff
+            );
+    }
+
+
+    .bar-wrapper {
+        width: 75px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+
+        transition: 0.4s;
+    }
+
+
+    .bar {
+        width: 65px;
+
+        background: linear-gradient(
+            #49a1ef,
+            #2574ba
+        );
+
+        border: 2px solid #1e5e98;
+
+        border-radius: 7px 7px 0 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        padding-bottom: 12px;
+
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+
+        transition:
+            height 0.6s,
+            background 0.4s,
+            transform 0.4s;
+    }
+
+
+    .bar.compare {
+        background: linear-gradient(
+            #ffe66b,
+            #f1b919
+        );
+
+        border-color: #bd8a00;
+
+        color: #111;
+
+        transform: translateY(-15px);
+    }
+
+
+    .bar.swap {
+        background: linear-gradient(
+            #ff6961,
+            #dc2f28
+        );
+
+        border-color: #aa1f1a;
+
+        transform: translateY(-20px);
+    }
+
+
+    .bar.sorted {
+        background: linear-gradient(
+            #87d668,
+            #429c31
+        );
+
+        border-color: #27751d;
+    }
+
+
+    .bar-base {
+        height: 9px;
+        width: 70px;
+        background: #111;
+        border-radius: 2px;
+    }
+
+
+    /* ==============================
+       EXPLANATION
+    ============================== */
+
+    .explanation {
+        padding: 20px;
+        background: #eef5ff;
+        border-top: 2px solid #b6cdf7;
+        min-height: 110px;
+    }
+
+    .explanation h3 {
+        color: #243c9f;
+        margin-top: 0;
+    }
+
+    #message {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+
+    /* ==============================
+       ARRAY VIEW
+    ============================== */
+
+    .array-view {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .array-box {
+        display: inline-block;
+        padding: 13px 20px;
+        margin: 4px;
+
+        border: 2px solid #bbb;
+        border-radius: 7px;
+
+        background: white;
+
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+
+    /* ==============================
+       CODE AREA
+    ============================== */
+
+    .code-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        padding: 20px;
+    }
+
+    .code-box {
+        background: #16151d;
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+
+        font-family: Consolas, monospace;
+        line-height: 1.8;
+    }
+
+    .idea-box {
+        background: #fff7cf;
+        border: 1px solid #dfc86d;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .idea-box h3 {
+        margin-top: 0;
+    }
+
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
+
+    @media (max-width: 850px) {
+
+        .container {
+            grid-template-columns: 1fr;
+        }
+
+        .bar-area {
+            gap: 8px;
+            padding: 20px 8px;
+        }
+
+        .bar-wrapper {
+            width: 55px;
+        }
+
+        .bar {
+            width: 48px;
+        }
+
+        .bar-base {
+            width: 52px;
+        }
+
+        .code-section {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <h1>
+        ⭐ Sorting Visualizer
+    </h1>
+
+    <p>
+        Watch sorting happen slowly using colorful bars.
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- =====================================
+         LEFT SIDE
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <h2>
+            Choose Example
+        </h2>
+
+
+        <button
+            id="integerButton"
+            class="example-button active"
+            onclick="chooseExample('integer')"
+        >
+            🔢 <strong>Sort Integers</strong>
+            <br>
+            5, 1, 4, 2, 8
+        </button>
+
+
+        <button
+            id="alphabetButton"
+            class="example-button"
+            onclick="chooseExample('alphabet')"
+        >
+            🔤 <strong>Sort Letters</strong>
+            <br>
+            E, A, D, B, C
+        </button>
+
+
+        <div class="legend">
+
+            <h3>
+                How to Read
+            </h3>
+
+            <div class="legend-row">
+                <div class="legend-box blue"></div>
+                Waiting
+            </div>
+
+            <div class="legend-row">
+                <div class="legend-box yellow"></div>
+                Comparing
+            </div>
+
+            <div class="legend-row">
+                <div class="legend-box red"></div>
+                Swapping
+            </div>
+
+            <div class="legend-row">
+                <div class="legend-box green"></div>
+                Sorted
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN SIDE
+    ====================================== -->
+
+    <main class="main">
+
+
+        <div class="panel">
+
+
+            <div class="panel-title">
+
+                <h2 id="exampleTitle">
+                    🔢 Integer Sorting — Bubble Sort
+                </h2>
+
+                <div id="exampleDescription">
+                    Compare two neighboring numbers.
+                    If the left number is bigger,
+                    swap them.
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="controls">
+
+
+                <button
+                    class="start-btn"
+                    onclick="startSorting()"
+                >
+                    ▶ Start Sorting
+                </button>
+
+
+                <button
+                    class="reset-btn"
+                    onclick="resetSorting()"
+                >
+                    ↻ Reset
+                </button>
+
+
+                <button
+                    id="ascendingButton"
+                    class="direction-btn selected"
+                    onclick="changeDirection('asc')"
+                >
+                    Small → Big
+                </button>
+
+
+                <button
+                    id="descendingButton"
+                    class="direction-btn"
+                    onclick="changeDirection('desc')"
+                >
+                    Big → Small
+                </button>
+
+
+                <div class="speed-control">
+
+                    🐢 Slow
+
+                    <input
+                        type="range"
+                        id="speed"
+                        min="300"
+                        max="2200"
+                        value="1500"
+                        step="100"
+                    >
+
+                    🐇 Fast
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CURRENT ARRAY -->
+
+            <div class="array-view">
+
+                <strong>
+                    Current Array:
+                </strong>
+
+                <div id="arrayDisplay"></div>
+
+            </div>
+
+
+
+            <!-- VISUAL BARS -->
+
+            <div
+                id="barArea"
+                class="bar-area"
+            >
+            </div>
+
+
+
+            <!-- EXPLANATION -->
+
+            <div class="explanation">
+
+                <h3>
+                    🤖 What is the computer doing?
+                </h3>
+
+                <div id="message">
+
+                    Press
+                    <strong>Start Sorting</strong>
+                    to begin.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             CODE EXPLANATION
+        ====================================== -->
+
+        <div class="panel">
+
+            <div class="panel-title">
+
+                <h2>
+                    💻 Bubble Sort Explained
+                </h2>
+
+            </div>
+
+
+            <div class="code-section">
+
+
+                <div class="code-box">
+
+<pre>
+repeat many times {
+
+    compare item 1 and item 2
+
+    if left item is bigger {
+
+        swap them
+
+    }
+
+    move to next pair
+}
+</pre>
+
+                </div>
+
+
+                <div class="idea-box">
+
+                    <h3>
+                        🧠 Easy way to remember
+                    </h3>
+
+                    <p>
+                        <strong>1.</strong>
+                        Look at two neighbors.
+                    </p>
+
+                    <p>
+                        <strong>2.</strong>
+                        Compare them.
+                    </p>
+
+                    <p>
+                        <strong>3.</strong>
+                        Swap if they are in the wrong order.
+                    </p>
+
+                    <p>
+                        <strong>4.</strong>
+                        Move one place to the right.
+                    </p>
+
+                    <p>
+                        <strong>5.</strong>
+                        Repeat until sorted.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+
+/* ============================================================
+   DATA
+============================================================ */
+
+const integerExample = [5, 1, 4, 2, 8];
+
+const alphabetExample = [
+    "E",
+    "A",
+    "D",
+    "B",
+    "C"
+];
+
+
+let currentType = "integer";
+
+let direction = "asc";
+
+let values = [...integerExample];
+
+let sorting = false;
+
+
+
+/* ============================================================
+   WAIT
+============================================================ */
+
+function sleep(milliseconds) {
+
+    return new Promise(function(resolve) {
+
+        setTimeout(
+            resolve,
+            milliseconds
+        );
+
+    });
+
+}
+
+
+
+/* ============================================================
+   SPEED
+============================================================ */
+
+function getDelay() {
+
+    const slider =
+        Number(
+            document.getElementById(
+                "speed"
+            ).value
+        );
+
+    /*
+        Slider visually says:
+
+        left = slower
+        right = faster
+
+        Therefore we reverse the number.
+    */
+
+    return 2500 - slider;
+
+}
+
+
+
+/* ============================================================
+   CHOOSE INTEGER / ALPHABET
+============================================================ */
+
+function chooseExample(type) {
+
+    if (sorting) {
+        return;
+    }
+
+
+    currentType = type;
+
+
+    const integerButton =
+        document.getElementById(
+            "integerButton"
+        );
+
+    const alphabetButton =
+        document.getElementById(
+            "alphabetButton"
+        );
+
+
+    integerButton.classList.remove(
+        "active"
+    );
+
+    alphabetButton.classList.remove(
+        "active"
+    );
+
+
+    if (type === "integer") {
+
+        integerButton.classList.add(
+            "active"
+        );
+
+        values = [
+            ...integerExample
+        ];
+
+
+        document.getElementById(
+            "exampleTitle"
+        ).innerHTML =
+            "🔢 Integer Sorting — Bubble Sort";
+
+
+        document.getElementById(
+            "exampleDescription"
+        ).innerHTML =
+            `
+            Compare two neighboring numbers.
+            If the left number is bigger,
+            swap them.
+            `;
+
+    }
+
+    else {
+
+        alphabetButton.classList.add(
+            "active"
+        );
+
+        values = [
+            ...alphabetExample
+        ];
+
+
+        document.getElementById(
+            "exampleTitle"
+        ).innerHTML =
+            "🔤 Alphabet Sorting — Bubble Sort";
+
+
+        document.getElementById(
+            "exampleDescription"
+        ).innerHTML =
+            `
+            Compare two neighboring letters.
+            A comes before B,
+            B before C,
+            C before D,
+            and so on.
+            `;
+
+    }
+
+
+    resetSorting();
+
+}
+
+
+
+/* ============================================================
+   SORT DIRECTION
+============================================================ */
+
+function changeDirection(newDirection) {
+
+    if (sorting) {
+        return;
+    }
+
+
+    direction =
+        newDirection;
+
+
+    document.getElementById(
+        "ascendingButton"
+    ).classList.remove(
+        "selected"
+    );
+
+
+    document.getElementById(
+        "descendingButton"
+    ).classList.remove(
+        "selected"
+    );
+
+
+    if (direction === "asc") {
+
+        document.getElementById(
+            "ascendingButton"
+        ).classList.add(
+            "selected"
+        );
+
+    }
+
+    else {
+
+        document.getElementById(
+            "descendingButton"
+        ).classList.add(
+            "selected"
+        );
+
+    }
+
+}
+
+
+
+/* ============================================================
+   DISPLAY ARRAY
+============================================================ */
+
+function drawArray() {
+
+    const area =
+        document.getElementById(
+            "arrayDisplay"
+        );
+
+
+    area.innerHTML = "";
+
+
+    values.forEach(function(value) {
+
+        const box =
+            document.createElement(
+                "span"
+            );
+
+
+        box.className =
+            "array-box";
+
+
+        box.textContent =
+            value;
+
+
+        area.appendChild(box);
+
+    });
+
+}
+
+
+
+/* ============================================================
+   GET BAR HEIGHT
+============================================================ */
+
+function getBarHeight(value) {
+
+
+    /*
+        INTEGER HEIGHTS
+    */
+
+    if (currentType === "integer") {
+
+        return 45 + value * 28;
+
+    }
+
+
+    /*
+        LETTER HEIGHTS
+
+        A = 1
+        B = 2
+        C = 3
+        ...
+    */
+
+    const alphabetPosition =
+        value.charCodeAt(0)
+        -
+        "A".charCodeAt(0)
+        +
+        1;
+
+
+    return 45 +
+        alphabetPosition * 28;
+
+}
+
+
+
+/* ============================================================
+   DRAW BARS
+============================================================ */
+
+function drawBars(
+    firstIndex = -1,
+    secondIndex = -1,
+    state = "",
+    sortedFrom = values.length
+) {
+
+    const area =
+        document.getElementById(
+            "barArea"
+        );
+
+
+    area.innerHTML = "";
+
+
+    values.forEach(
+        function(value, index) {
+
+
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
+
+
+            wrapper.className =
+                "bar-wrapper";
+
+
+            const bar =
+                document.createElement(
+                    "div"
+                );
+
+
+            bar.className =
+                "bar";
+
+
+            bar.style.height =
+                getBarHeight(value)
+                +
+                "px";
+
+
+            bar.textContent =
+                value;
+
+
+
+            /* SORTED */
+
+            if (
+                index >= sortedFrom
+            ) {
+
+                bar.classList.add(
+                    "sorted"
+                );
+
+            }
+
+
+
+            /* COMPARE */
+
+            if (
+                index === firstIndex
+                ||
+                index === secondIndex
+            ) {
+
+                if (
+                    state === "compare"
+                ) {
+
+                    bar.classList.add(
+                        "compare"
+                    );
+
+                }
+
+
+                if (
+                    state === "swap"
+                ) {
+
+                    bar.classList.add(
+                        "swap"
+                    );
+
+                }
+
+            }
+
+
+
+            const base =
+                document.createElement(
+                    "div"
+                );
+
+
+            base.className =
+                "bar-base";
+
+
+            wrapper.appendChild(
+                bar
+            );
+
+
+            wrapper.appendChild(
+                base
+            );
+
+
+            area.appendChild(
+                wrapper
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ============================================================
+   SHOULD TWO ITEMS SWAP?
+============================================================ */
+
+function shouldSwap(
+    left,
+    right
+) {
+
+
+    /*
+        INTEGER COMPARISON
+    */
+
+    if (
+        currentType ===
+        "integer"
+    ) {
+
+        if (
+            direction ===
+            "asc"
+        ) {
+
+            return left > right;
+
+        }
+
+        else {
+
+            return left < right;
+
+        }
+
+    }
+
+
+
+    /*
+        LETTER COMPARISON
+    */
+
+    else {
+
+        const comparison =
+            left.localeCompare(
+                right
+            );
+
+
+        if (
+            direction ===
+            "asc"
+        ) {
+
+            return comparison > 0;
+
+        }
+
+        else {
+
+            return comparison < 0;
+
+        }
+
+    }
+
+}
+
+
+
+/* ============================================================
+   EXPLAIN COMPARISON
+============================================================ */
+
+function comparisonMessage(
+    left,
+    right
+) {
+
+
+    if (
+        currentType ===
+        "integer"
+    ) {
+
+        if (
+            direction ===
+            "asc"
+        ) {
+
+            return `
+                👀 Compare
+                <strong>${left}</strong>
+                and
+                <strong>${right}</strong>.
+
+                <br><br>
+
+                We want smaller numbers first.
+
+                <br>
+
+                Is
+                <strong>${left} &gt; ${right}</strong>?
+            `;
+
+        }
+
+        else {
+
+            return `
+                👀 Compare
+                <strong>${left}</strong>
+                and
+                <strong>${right}</strong>.
+
+                <br><br>
+
+                We want bigger numbers first.
+
+                <br>
+
+                Is
+                <strong>${left} &lt; ${right}</strong>?
+            `;
+
+        }
+
+    }
+
+
+
+    else {
+
+        if (
+            direction ===
+            "asc"
+        ) {
+
+            return `
+                👀 Compare
+                <strong>${left}</strong>
+                and
+                <strong>${right}</strong>.
+
+                <br><br>
+
+                We want alphabetical order:
+
+                <strong>
+                    A → B → C → D → E
+                </strong>
+
+                <br><br>
+
+                Does
+                <strong>${left}</strong>
+                come AFTER
+                <strong>${right}</strong>
+                in the alphabet?
+            `;
+
+        }
+
+        else {
+
+            return `
+                👀 Compare
+                <strong>${left}</strong>
+                and
+                <strong>${right}</strong>.
+
+                <br><br>
+
+                We want reverse alphabetical order:
+
+                <strong>
+                    E → D → C → B → A
+                </strong>
+            `;
+
+        }
+
+    }
+
+}
+
+
+
+/* ============================================================
+   MAIN BUBBLE SORT
+============================================================ */
+
+async function startSorting() {
+
+
+    if (sorting) {
+        return;
+    }
+
+
+    sorting = true;
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    const n =
+        values.length;
+
+
+
+    /* ---------------------------------
+       PASS LOOP
+    --------------------------------- */
+
+    for (
+        let pass = 0;
+        pass < n - 1;
+        pass++
+    ) {
+
+
+        message.innerHTML =
+            `
+            🔁
+            <strong>
+                Pass ${pass + 1}
+            </strong>
+
+            <br>
+
+            Start comparing neighbors
+            from the left.
+            `;
+
+
+        await sleep(
+            getDelay()
+        );
+
+
+
+        let swapped =
+            false;
+
+
+
+        /* -----------------------------
+           COMPARISON LOOP
+        ----------------------------- */
+
+        for (
+            let i = 0;
+            i < n - 1 - pass;
+            i++
+        ) {
+
+
+            const left =
+                values[i];
+
+
+            const right =
+                values[i + 1];
+
+
+
+            /* STEP 1:
+               SHOW COMPARISON
+            */
+
+            drawBars(
+                i,
+                i + 1,
+                "compare",
+                n - pass
+            );
+
+
+            drawArray();
+
+
+            message.innerHTML =
+                comparisonMessage(
+                    left,
+                    right
+                );
+
+
+            await sleep(
+                getDelay()
+            );
+
+
+
+            /* STEP 2:
+               DECIDE IF SWAP
+            */
+
+            if (
+                shouldSwap(
+                    left,
+                    right
+                )
+            ) {
+
+
+                message.innerHTML =
+                    `
+                    🔴 Wrong order!
+
+                    <br><br>
+
+                    <strong>
+                        ${left}
+                        and
+                        ${right}
+                    </strong>
+
+                    need to swap.
+                    `;
+
+
+                drawBars(
+                    i,
+                    i + 1,
+                    "swap",
+                    n - pass
+                );
+
+
+                await sleep(
+                    getDelay()
+                );
+
+
+
+                /* -------------------------
+                   ACTUAL SWAP
+                ------------------------- */
+
+                const temporary =
+                    values[i];
+
+
+                values[i] =
+                    values[i + 1];
+
+
+                values[i + 1] =
+                    temporary;
+
+
+                swapped =
+                    true;
+
+
+
+                drawBars(
+                    -1,
+                    -1,
+                    "",
+                    n - pass
+                );
+
+
+                drawArray();
+
+
+
+                message.innerHTML =
+                    `
+                    🔄 Swapped!
+
+                    <br><br>
+
+                    Now:
+
+                    <strong>
+                        ${values[i]}
+                        comes before
+                        ${values[i + 1]}
+                    </strong>
+                    `;
+
+
+                await sleep(
+                    getDelay()
+                );
+
+            }
+
+            else {
+
+
+                message.innerHTML =
+                    `
+                    🟢 Correct order.
+
+                    <br><br>
+
+                    <strong>
+                        ${left}
+                        and
+                        ${right}
+                    </strong>
+
+                    can stay where they are.
+
+                    <br><br>
+
+                    No swap needed.
+                    `;
+
+
+                await sleep(
+                    getDelay()
+                );
+
+            }
+
+        }
+
+
+
+        /*
+            If no values moved,
+            array is already sorted.
+        */
+
+        if (!swapped) {
+
+            break;
+
+        }
+
+    }
+
+
+
+    /* =================================
+       FINISHED
+    ================================= */
+
+    drawBars(
+        -1,
+        -1,
+        "",
+        0
+    );
+
+
+    drawArray();
+
+
+    message.innerHTML =
+        `
+        🎉
+        <strong>
+            Sorting complete!
+        </strong>
+
+        <br><br>
+
+        Final result:
+
+        <strong>
+            ${values.join(" → ")}
+        </strong>
+        `;
+
+
+    sorting = false;
+
+}
+
+
+
+/* ============================================================
+   RESET
+============================================================ */
+
+function resetSorting() {
+
+
+    sorting =
+        false;
+
+
+    if (
+        currentType ===
+        "integer"
+    ) {
+
+        values = [
+            ...integerExample
+        ];
+
+    }
+
+    else {
+
+        values = [
+            ...alphabetExample
+        ];
+
+    }
+
+
+    drawArray();
+
+    drawBars();
+
+
+    document.getElementById(
+        "message"
+    ).innerHTML =
+        `
+        Press
+        <strong>Start Sorting</strong>
+        to begin.
+        `;
+
+}
+
+
+
+/* ============================================================
+   INITIAL PAGE
+============================================================ */
+
+resetSorting();
+
+
+</script>
+
+
+</body>
+</html>

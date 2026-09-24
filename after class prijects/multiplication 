@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication Using Functions</title>
+</head>
+
+<body>
+
+    <h1>Multiplication Using Functions</h1>
+
+    <p>
+        Click the button to multiply two numbers using a JavaScript function.
+    </p>
+
+    <button onclick="multiply(4)">Click Me!</button>
+
+    <p id="result"></p>
+
+    <script>
+
+        function multiply(a, b) {
+
+            if (b === undefined) {
+                alert("The value of b is undefined");
+                b = 5;
+            }
+
+            var result = a * b;
+
+            document.getElementById("result").innerHTML =
+                "The result is: " + result;
+        }
+
+    </script>
+
+</body>
+</html>

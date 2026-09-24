@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Nature Explorer Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Full-width Header -->
+    <div class="container-fluid bg-success text-white p-4">
+        <h1>My Nature Explorer Page</h1>
+        <p>Discover the beauty and wonders of nature.</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Forest Adventure -->
+        <div class="bg-info p-3 my-3 border">
+            <h2>Forest Adventure</h2>
+            <p>
+                Forests are full of tall trees, fresh air, plants,
+                birds, and many different animals.
+            </p>
+        </div>
+
+        <!-- River Journey -->
+        <div class="bg-primary text-white p-3 my-3 border">
+            <h2>River Journey</h2>
+            <p>
+                Rivers flow through the land and provide water for
+                plants, animals, and people.
+            </p>
+        </div>
+
+        <!-- Mountain View -->
+        <div class="bg-warning p-3 my-3 border">
+            <h2>Mountain View</h2>
+            <p>
+                Mountains rise high above the land and offer beautiful
+                views of the natural world.
+            </p>
+        </div>
+
+        <!-- Wildlife Zone -->
+        <div class="bg-danger text-white p-3 my-3 border">
+            <h2>Wildlife Zone</h2>
+            <p>
+                Wildlife includes animals, birds, insects, and other
+                creatures living in their natural habitats.
+            </p>
+        </div>
+
+        <!-- Nature Explorer Checklist -->
+        <div class="bg-light p-3 my-3 border border-success">
+            <h2>Nature Explorer Checklist</h2>
+
+            <ul>
+                <li>Explore a forest</li>
+                <li>Visit a river</li>
+                <li>Look at a mountain</li>
+                <li>Observe wildlife safely</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Full-width Footer -->
+    <div class="container-fluid bg-dark text-white p-3 my-3">
+        <p>
+            Nature Tip: Always respect plants, animals, and their habitats.
+        </p>
+    </div>
+
+</body>
+</html>
