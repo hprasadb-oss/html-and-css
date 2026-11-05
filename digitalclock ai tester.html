@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Modern Digital Clock</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #080d1c;
+      color: white;
+    }
+
+    /* Animated background */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        #0f172a,
+        #172554,
+        #3b0764,
+        #0f172a
+      );
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    /* Decorative glowing circles */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(5px);
+      animation: float 7s ease-in-out infinite alternate;
+    }
+
+    .circle-one {
+      width: 230px;
+      height: 230px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      top: 12%;
+      left: 15%;
+      opacity: 0.55;
+    }
+
+    .circle-two {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #9333ea, #ec4899);
+      bottom: 5%;
+      right: 12%;
+      opacity: 0.45;
+      animation-delay: -3s;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0) translateX(0);
+      }
+      to {
+        transform: translateY(-35px) translateX(25px);
+      }
+    }
+
+    /* Glass clock container */
+    .clock-container {
+      position: relative;
+      z-index: 1;
+      width: min(90%, 650px);
+      padding: 55px 35px;
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 28px;
+
+      box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.15);
+
+      transition: transform 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+
+    .clock-container:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+    }
+
+    .clock-label {
+      color: #94a3b8;
+      font-size: 13px;
+      letter-spacing: 4px;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #34d399;
+      border-radius: 50%;
+      margin-right: 10px;
+      box-shadow: 0 0 12px #34d399;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    /* Digital clock */
+    #MyClockDisplay {
+      font-size: clamp(36px, 8vw, 76px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      font-variant-numeric: tabular-nums;
+      color: #ecfeff;
+      text-shadow: 0 0 30px rgba(34, 211, 238, 0.45);
+      white-space: nowrap;
+    }
+
+    .seconds {
+      color: #67e8f9;
+    }
+
+    .session {
+      font-size: 0.25em;
+      color: #a5f3fc;
+      letter-spacing: 1px;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    .date-display {
+      margin-top: 25px;
+      font-size: 15px;
+      color: #a5b4d0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .accent-line {
+      width: 65px;
+      height: 3px;
+      border-radius: 10px;
+      margin: 30px auto 0;
+      background: linear-gradient(90deg, #22d3ee, #a855f7);
+    }
+
+    @media (max-width: 480px) {
+      .clock-container {
+        padding: 38px 15px;
+      }
+
+      .date-display {
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+
+      .circle-one {
+        left: -80px;
+      }
+
+      .circle-two {
+        right: -100px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::before,
+      .circle,
+      .live-dot {
+        animation: none;
+      }
+
+      .clock-container {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="circle circle-one"></div>
+  <div class="circle circle-two"></div>
+
+  <main class="clock-container">
+    <div class="clock-label">
+      <span class="live-dot"></span>
+      LOCAL TIME
+    </div>
+
+    <div id="MyClockDisplay" role="timer"></div>
+
+    <div class="date-display" id="dateDisplay"></div>
+
+    <div class="accent-line"></div>
+  </main>
+
+  <script>
+    function showTime() {
+      const date = new Date();
+
+      let h = date.getHours();
+      let m = date.getMinutes();
+      let s = date.getSeconds();
+
+      const session = h >= 12 ? "PM" : "AM";
+
+      h = h % 12 || 12;
+
+      const pad = (number) =>
+        String(number).padStart(2, "0");
+
+      const time = `
+        ${pad(h)}:${pad(m)}<span class="seconds">:${pad(s)}</span>
+        <span class="session">${session}</span>
+      `;
+
+      document.getElementById("MyClockDisplay")
+        .innerHTML = time;
+
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
+
+      document.getElementById("dateDisplay")
+        .textContent = date.toLocaleDateString("en-US", options);
+
+      // Align updates with the next second.
+      setTimeout(showTime, 1000 - Date.now() % 1000);
+    }
+
+    showTime();
+  </script>
+
+</body>
+</html>
